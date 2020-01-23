@@ -11,11 +11,21 @@ import SwiftUI
 struct ContentView: View {
     
     @State private var remeberMe = false
+    @Environment(\.horizontalSizeClass) var sizeClass
     
     var body: some View {
-        VStack {
-            PushButton(title: "Remember me?", isOn: $remeberMe)
-            Text(remeberMe ? "On" : "Off")
+        if sizeClass == .compact {
+            return AnyView(VStack {
+                Text("Active size class:")
+                Text("Compact")
+            }
+            .font(.largeTitle))
+        } else {
+            return AnyView(HStack {
+                Text("Active size class:")
+                Text("Regular")
+            }
+            .font(.largeTitle))
         }
     }
 }
